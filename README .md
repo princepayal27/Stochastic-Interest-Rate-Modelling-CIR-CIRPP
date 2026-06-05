@@ -17,9 +17,7 @@
 - [Mathematical Background](#mathematical-background)
 - [Results](#results)
 - [Limitations](#limitations)
-- [Repository Structure](#repository-structure)
 - [Requirements](#requirements)
-- [Technical Skills Demonstrated](#technical-skills-demonstrated)
 - [Project Descriptions](#project-descriptions)
 
 ---
@@ -112,9 +110,9 @@ PC1 dominance empirically validates the one-factor CIR assumption for the short 
 |---|---|---|
 | Global RMSE | 58.60 bps | 42.27 bps |
 | Global R² | 0.0548 | 0.5081 |
-| **Official R² (3M–2Y)** | **0.9237 ✅** | **0.9119 ✅** |
+| **R² (3M–2Y)** | **0.9237 ✅** | **0.9119 ✅** |
 
-Both models exceed the **0.85 threshold** on the official metric. CIR++ improves global RMSE by 27%.
+Both models exceed the **0.85 threshold** on the official metric. Although CIR++ isn't improving R² for 3M-2Y but it really helps to improve global RMSE by 27%.
 
 ### Per-Maturity Out-of-Sample R²
 
@@ -144,35 +142,6 @@ Negative R² at 5Y–30Y reflects the one-factor structural constraint, not a ca
 
 4. **Shape Constraints** — CIR cannot reproduce strongly inverted or double-humped curves, both of which appear in the test period.
 
----
-
-## Repository Structure
-
-```
-cir-yield-curve/
-│
-├── CIR_Yield_Curve_Project.ipynb   # Main notebook (run top-to-bottom)
-│
-├── data/
-│   ├── train_data.csv              # Historical yield data (2016–2024)
-│   ├── test_data.csv               # Out-of-sample yield data (2024–2026)
-│   └── test_data_3M.csv            # 3M yields only (test period input)
-│
-├── outputs/
-│   ├── yield_movements_over_time.png
-│   ├── yield_correlation_matrix.png
-│   ├── average_yield_curve_shape.png
-│   ├── pca_factor_loadings.png
-│   ├── cir_short_rate_theory_analysis.png
-│   ├── cir_yield_curve_reconstruction.png
-│   └── cir_plus_plus_evaluation.png
-│
-├── requirements.txt
-└── README.md
-```
-
----
-
 ## Requirements
 
 ```txt
@@ -201,22 +170,6 @@ scikit-learn>=1.3.0
 ---
 
 ## Project Descriptions
-
-### Resume (50 words)
-Implemented and calibrated the Cox-Ingersoll-Ross (CIR) stochastic interest rate model on 8 years of zero-coupon yield data across 9 maturities. Extended to CIR++ using Brigo-Mercurio deterministic shift bootstrapping. Achieved out-of-sample R²=0.9237 on the 3M–2Y range using only the 3-Month rate as a live input.
-
----
-
-### LinkedIn (100 words)
-Built a full quantitative finance pipeline implementing the Cox-Ingersoll-Ross (CIR) stochastic interest rate model from scratch — calibrated on 1,976 days of multi-maturity yield data using cross-sectional least squares, then extended to CIR++ via the Brigo-Mercurio deterministic shift framework.
-
-The model reconstructs the full yield curve (6M–30Y) using only the live 3-Month rate as input, achieving an out-of-sample R²=0.9237 on the 3M–2Y range — well above the 0.85 threshold. PCA confirms 96.34% of yield variance is driven by a single level factor, empirically validating the one-factor CIR assumption.
-
-Project completed as part of Finance Club IIT Roorkee Open Projects 2026.
-
----
-
-### Portfolio (150–200 words)
 This project is an end-to-end implementation of the **Cox-Ingersoll-Ross (CIR)** stochastic short-rate model applied to real historical zero-coupon yield data spanning 2016–2026. The model captures interest rate dynamics through a mean-reverting square-root diffusion process and derives closed-form zero-coupon bond prices and yields using the CIR affine term structure framework.
 
 The pipeline begins with robust data engineering (1,976 training days, 9 maturities), proceeds through empirical factor analysis (PCA confirms 96.34% level dominance), calibrates parameters via vectorised cross-sectional least squares, and culminates in strict out-of-sample evaluation where **only the 3-Month yield is observable** at prediction time.
