@@ -43,7 +43,7 @@ The pipeline implements a **CIR++ extension** (Brigo-Mercurio framework) via a d
 | Maturities | 3M, 6M, 9M, 1Y, 2Y, 5Y, 10Y, 20Y, 30Y |
 | Data Format | Zero-coupon yields, decimal form |
 
-Preprocessing: whitespace stripping, date parsing, ffill/bfill for gaps, automatic decimal scale verification.
+Preprocessing: whitespace stripping, date parsing, 'ffill/bfill' for gaps, automatic decimal scale verification.
 
 ---
 
