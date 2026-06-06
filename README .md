@@ -13,6 +13,7 @@
 ## Table of Contents
 
 - [Project Overview](#project-overview)
+- [Problem Statement](#problem-statement)
 - [Dataset](#dataset)
 - [Mathematical Background](#mathematical-background)
 - [Results](#results)
@@ -29,6 +30,22 @@ This project builds a complete quantitative finance pipeline for **stochastic in
 The pipeline implements a **CIR++ extension** (Brigo-Mercurio framework) via a deterministic maturity-specific shift φ(τ), bootstrapped from the final training observation to anchor the model to the observed term structure before projecting forward.
 
 **Key constraint:** At prediction time, only the 3M yield is observable. No re-fitting or re-optimisation is permitted on test data. The official evaluation metric is **out-of-sample R² on the 3M–2Y maturity range**.
+
+---
+
+## Problem Statement
+
+The task is to reconstruct and predict the bond yield curve using historical multi-maturity yield data through the **Cox-Ingersoll-Ross (CIR)** stochastic interest rate model. The model assumes that short-term interest rates follow a mean-reverting square-root diffusion process governed by:
+
+- **κ** = Mean-Reversion Speed
+- **θ** = Long-Run Mean Rate
+- **σ** = Volatility
+
+The prediction challenge is to reconstruct yields from **6 Months to 30 Years** using only the **3-Month yield** as the observable input. The project is evaluated based on out-of-sample predictive performance, where:
+
+- **R² > 0.85** = Successful Yield Curve Reconstruction
+
+The business and quantitative finance challenge lies in accurately modeling interest rate dynamics, calibrating stochastic parameters from noisy market data, and generalizing effectively to unseen yield curve observations.
 
 ---
 
